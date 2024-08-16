@@ -9,6 +9,10 @@ enum layer_names {
     L_CODE,
 };
 
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC_GRV] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_GRV),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -36,6 +40,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC_GRV] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_GRV),
-};
+bool rgb_matrix_indicators_user(void) {
+    switch (get_highest_layer(layer_state)) {
+        case 1:
+            rgb_matrix_set_color_all(RGB_BLUE);
+            break;
+        case 2:
+            rgb_matrix_set_color_all(RGB_MAGENTA);
+            break;
+        case 3:
+            rgb_matrix_set_color_all(RGB_GREEN);
+            break;
+    }
+
+    return true;
+}
