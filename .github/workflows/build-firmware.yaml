@@ -1,0 +1,30 @@
+name: Build keyboard firmware
+
+on:
+  push:
+    paths-ignore:
+      - .github/**
+
+jobs:
+  build-firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout qmk repository
+        uses: actions/checkout@v4
+        with:
+          repository: qmk/qmk_firmware
+
+      - name: Checkout keymap
+        uses: actions/checkout@v4
+        with:
+          path: ./keyboards/inland/mk47/keymaps/larsks
+
+      - name: Build firmware
+        run: |
+          ./util/docker_build.sh inland/mk47:larsks
+
+      - name: Attach firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: inland_mk47_larsks.bin
+          path: inland_mk47_larsks.bin
