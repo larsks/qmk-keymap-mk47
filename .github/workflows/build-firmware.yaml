@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout qmk repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: qmk/qmk_firmware
 
       - name: Checkout keymap
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: ./keyboards/inland/mk47/keymaps/larsks
 
