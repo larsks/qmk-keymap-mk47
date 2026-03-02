@@ -25,7 +25,7 @@ jobs:
           ./util/docker_build.sh inland/mk47:larsks
 
       - name: Attach firmware artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: inland_mk47_larsks.bin
           path: inland_mk47_larsks.bin
